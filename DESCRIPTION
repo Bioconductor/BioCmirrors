@@ -2,7 +2,7 @@ Package: BiocMirrors
 Title: Utilities for checking Bioconductor mirror health
 Version: 0.0.1
 Authors@R: c(
-    person("Marcel", "Ramos", , "marcel.ramosperez@roswellpark.org",
+    person("Marcel", "Ramos", , "marcel.ramos@sph.cuny.edu",
     c("aut", "cre"), c(ORCID = "0000-0002-3242-0582")),
     person("Martin", "Morgan", , "martin.morgan@roswellpark.org", "aut")
     )
