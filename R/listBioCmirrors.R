@@ -3,9 +3,12 @@
 #' List Bioconductor mirrors
 #'
 #' @description The function reads the Bioconductor mirrors CSV file and returns
-#'   a tibble. See the details for the columns.
+#'   a `tibble`. See the `Value` section for details.
 #'
-#' @details The function returns a tibble with the following columns:
+#' @details
+#' The CSV file is available at the following URL:
+#' <https://bioconductor.org/BioC_mirrors.csv>
+#' The `tibble` contains the following columns:
 #'   * `Name`: The name of the mirror
 #'   * `Country`: The country of the mirror
 #'   * `City`: The city of the mirror
@@ -18,15 +21,17 @@
 #'   * `Protocol`: The protocol of the mirror either `https` or `http`
 #'     (parsed and added from URL column)
 #'
-#' @md
-#'
 #' @importFrom tibble as_tibble
 #'
-#' @return A tibble with the following columns:
+#' @returns A `tibble` from the Bioconductor mirrors CSV file.
 #'
+#' @examples
+#' listBioCmirrors()
 #' @export
-listMirrors <- function() {
+listBioCmirrors <- function() {
     mirrordf <- utils::read.csv(.BIOC_MIRRORS_URL)
-    mirrordf[["Protocol"]] <- gsub("(http[s]?).*", "\\1", mirrordf[["URL"]])
-    mirrordf |> tibble::as_tibble()
+    mirrordf[["Protocol"]] <-
+        gsub("(http[s]?).*", "\\1", mirrordf[["URL"]])
+    mirrordf |>
+        tibble::as_tibble()
 }
