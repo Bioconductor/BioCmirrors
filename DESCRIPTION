@@ -9,6 +9,8 @@ Authors@R: c(
 Description: Provides utilties for checking the health and recency of mirror
   repositories. It checks package versions in the mirror against the canonical
   Bioconductor versions.
+Depends:
+  R (>= 4.1.0)
 Imports:
   BiocManager,
   httr,
