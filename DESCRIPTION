@@ -4,7 +4,7 @@ Version: 0.0.1
 Authors@R: c(
     person("Marcel", "Ramos", , "marcel.ramos@sph.cuny.edu",
     c("aut", "cre"), c(ORCID = "0000-0002-3242-0582")),
-    person("Martin", "Morgan", , "martin.morgan@roswellpark.org", "aut")
+    person("Martin", "Morgan", role = "aut")
     )
 Description: Provides utilties for checking the health and recency of mirror
   repositories. It checks package versions in the mirror against the canonical
