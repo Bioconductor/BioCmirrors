@@ -1,0 +1,121 @@
+---
+title: "BioCmirrors: Health Status Checks"
+author:
+  - name: Marcel Ramos
+    affiliation: CUNY School of Public Health, New York, NY
+date: "`r BiocStyle::doc_date()`"
+vignette: |
+  %\VignetteIndexEntry{BioCmirrors}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    toc_float: true
+package: BioCmirrors
+---
+
+# BioCmirrors
+
+## Introduction 
+
+The `BioCmirrors` package provides functions to check the health status of
+Bioconductor mirrors. The package is useful for users who want to ensure that
+the mirror they are using is up-to-date and has all the packages available. The
+package also provides a list of all available mirrors and their statistics.
+The capital `C` in `BioCmirrors` is intentional to be consistent with the
+`chooseBioCmirror` function in the `utils` package.
+
+## Installation
+
+Currently, the package can only be found on GitHub. To install it, use the
+following:
+
+```{r, eval=FALSE}
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("Bioconductor/BioCmirrors")
+```
+
+
+## Quick Start
+
+```{r,include=TRUE,results="hide",message=FALSE,warning=FALSE}
+library(BioCmirrors)
+```
+
+## Mirror Health Checks
+
+The `checkBioCmirror` function checks the health status of a Bioconductor
+mirror including the main Bioconductor URL:
+
+```{r}
+url <- "https://bioconductor.org"
+checkBioCmirror(mirror = url)
+```
+
+The function can also be run interactively, where it will display a list
+of mirrors to choose from:
+
+
+```{r, eval=FALSE}
+checkBioCmirror()
+#' Secure BioC mirrors 
+#' 
+#'  1: 0-Bioconductor (World-wide) [https]   2: USA (Boston) [https]               
+#'  3: Germany (Gottingen) [https]           4: Japan (Wako) [https]               
+#'  5: Taiwan (Hsinchu) [https]              6: China (Peking) [https]             
+#'  7: China (Nanjing) [https]               8: China (Hefei Anhui) [https]        
+#'  9: Norway (Bergen) [https]              10: Denmark (Aalborg) [https]          
+#' 11: Sweden (Umea) [https]                12: (other mirrors)                    
+#' 
+#' 
+#' Selection: 3
+#' https://ftp.gwdg.de/pub/misc/bioconductor/packages/bioc/src/contrib/PACKAGES 
+#'                                                                         TRUE 
+```
+
+## List of Mirrors
+
+The `listBioCmirrors` function returns a list of all available Bioconductor
+mirrors:
+
+```{r}
+mirrors <- listBioCmirrors()
+mirrors
+```
+
+The `tibble` output can be used to filter the mirrors by country:
+
+```{r}
+mirrors |>
+    dplyr::filter(.data[["Country"]] == "USA")
+```
+
+## Mirror Statistics
+
+The `BioCmirrorStats` function returns details about the `PACKAGES` file
+time stamp, the number of packages available, and the number of packages
+mirrored. The function can be used to check the status of a specific mirror. In
+this example, we reproduce the output of `utils::chooseBioCmirror()` by
+creating a named string with the URL of the mirror in Germany:
+
+```{r}
+url <- "https://ftp.gwdg.de/pub/misc/bioconductor"
+de_mirror <- c("Germany (Gottingen) [https]" = url)
+stats <- BioCmirrorStats(mirror = de_mirror)
+stats
+```
+
+As shown, the packages on the mirror are up-to-date, and there are no
+missing packages. 
+
+# Session Info
+
+<details> <summary> Click to expand </summary>
+
+```{r}
+sessionInfo()
+```
+
+</details>
