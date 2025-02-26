@@ -1,4 +1,4 @@
-Package: BiocMirrors
+Package: BioCmirrors
 Title: Utilities for checking Bioconductor mirror health
 Version: 0.0.1
 Authors@R: c(
@@ -17,8 +17,8 @@ Imports:
   RCurl,
   tibble,
   utils
-URL: https://github.com/Bioconductor/BiocMirrors
-BugReports: https://github.com/Bioconductor/BiocMirrors/issues
+URL: https://github.com/Bioconductor/BioCmirrors
+BugReports: https://github.com/Bioconductor/BioCmirrors/issues
 License: Artistic-2.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
