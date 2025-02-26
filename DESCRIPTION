@@ -17,6 +17,8 @@ Imports:
   RCurl,
   tibble,
   utils
+URL: https://github.com/Bioconductor/BiocMirrors
+BugReports: https://github.com/Bioconductor/BiocMirrors/issues
 License: Artistic-2.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
