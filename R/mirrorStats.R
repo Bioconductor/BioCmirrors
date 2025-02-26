@@ -53,12 +53,13 @@
 #' @importFrom utils available.packages
 #' @importFrom httr HEAD headers
 #'
-#' @examples
-#' if (interactive()) {
-#'   stats <- mirrorStats() # obtain statistics
-#'   stats                       # display a summary
-#' }
-#'
+#' @examplesIf interactive()
+#' ## obtain statistics
+#' stats <- mirrorStats()
+#' ## display a summary
+#' stats
+#' ## reset the Bioc_mirror option
+#' options("BioC_mirror" = NULL)
 #' @export
 mirrorStats <- function(
     version = BiocManager::version(),

@@ -72,11 +72,14 @@ availability in mirror repositories.
 
 }}
 \examples{
-if (interactive()) {
-  stats <- mirrorStats() # obtain statistics
-  stats                       # display a summary
-}
-
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## obtain statistics
+stats <- mirrorStats()
+## display a summary
+stats
+## reset the Bioc_mirror option
+options("BioC_mirror" = NULL)
+\dontshow{\}) # examplesIf}
 }
 \author{
 M. Morgan, M. Ramos
