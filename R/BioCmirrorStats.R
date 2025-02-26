@@ -1,6 +1,6 @@
 #' Bioconductor Mirror Repository Statistics
 #'
-#' @aliases print.mirrorStats
+#' @aliases print.BioCmirrorStats
 #'
 #' @description Summarize mirror packages and compare with the canonical
 #'   repository
@@ -13,7 +13,7 @@
 #'
 #' @param ... further arguments passed to or from other methods (not used).
 #'
-#' @return a list of class `mirrorStats` with the following fields:
+#' @return a list of class `BioCmirrorStats` with the following fields:
 #'
 #' * bioconductor_version: `package_version` the Bioconductor version given
 #'   by `BiocManager::version` or by the user.
@@ -55,13 +55,13 @@
 #'
 #' @examplesIf interactive()
 #' ## obtain statistics
-#' stats <- mirrorStats()
+#' stats <- BioCmirrorStats()
 #' ## display a summary
 #' stats
 #' ## reset the Bioc_mirror option
 #' options("BioC_mirror" = NULL)
 #' @export
-mirrorStats <- function(
+BioCmirrorStats <- function(
     version = BiocManager::version(),
     mirror = getOption("BioC_mirror"),
     repoType =
@@ -122,11 +122,11 @@ mirrorStats <- function(
         missing_pkgs = missing_pkgs,
         out_of_date_binaries = out_of_date_binaries
     )
-    class(result) <- c("mirrorStats", class(result))
+    class(result) <- c("BioCmirrorStats", class(result))
     result
 }
 
-.mirrorStats_package_format <-
+.BioCmirrorStats_package_format <-
     function(x)
 {
     msg <- paste(sort(x), collapse = " ")
@@ -134,13 +134,13 @@ mirrorStats <- function(
     paste0(msg, "\n")
 }
 
-#' @describeIn mirrorStats Print a summary of package
+#' @describeIn BioCmirrorStats Print a summary of package
 #'     availability in mirror repositories.
 #'
-#' @param x the object returned by `mirrorStats()`.
+#' @param x the object returned by `BioCmirrorStats()`.
 #'
 #' @export
-print.mirrorStats <-
+print.BioCmirrorStats <-
     function(x, ...)
 {
     bioconductor_mirror <- ifelse(
@@ -158,11 +158,11 @@ print.mirrorStats <-
         "Mirror software packages: ", x$n_mirror_software_packages, "\n",
         "Missing mirror software packages: ", length(x$missing_pkgs), "\n",
         if (x$repository_exists)
-            .mirrorStats_package_format(x$missing_pkgs),
+            .BioCmirrorStats_package_format(x$missing_pkgs),
         "Out-of-date mirror software packages: ",
             length(x$out_of_date_binaries), "\n",
         if (x$repository_exists)
-            .mirrorStats_package_format(x$out_of_date_binaries),
+            .BioCmirrorStats_package_format(x$out_of_date_binaries),
         sep = ""
     )
 }
